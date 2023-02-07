@@ -1,8 +1,6 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-<<<<<<< HEAD
-=======
 ## Kingfisher
 
 The MIT License (MIT)
@@ -29,7 +27,6 @@ SOFTWARE.
 
 
 
->>>>>>> 784b82f (added now playing)
 ## SnapKit
 
 Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit

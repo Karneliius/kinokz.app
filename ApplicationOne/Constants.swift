@@ -6,11 +6,6 @@
 //
 
 import Foundation
-<<<<<<< HEAD
-import SnapKit
-
-struct Constants {
-=======
 
 struct Constants {
     
@@ -19,7 +14,6 @@ struct Constants {
         
     }
         
->>>>>>> 784b82f (added now playing)
     struct Identifiers {
         static let categoryCollectionViewCell = "CategoryCollectionViewCell"
         static let trendingCollectionViewCell = "TrendingCollectionView"
@@ -27,8 +21,6 @@ struct Constants {
         static let placesTableViewCell = "PlacesTableViewCell"
         static let placesCollectionViewCell = "PlacesCollectionViewCell"
         static let categoryCollectionViewCell2 = "CategoryCollectionViewCell2"
-<<<<<<< HEAD
-=======
         static let movieCollectionViewCell = "MovieCollectionViewCell"
     }
     struct Values {
@@ -50,41 +42,23 @@ struct Constants {
         static let topRated = "\(Links.api)movie/top_rated?api_key=\(Keys.api)"
         static let upcoming = "\(Links.api)movie/upcoming?api_key=\(Keys.api)"
         
->>>>>>> 784b82f (added now playing)
     }
     
     enum Places: String, CaseIterable {
             case all = "🔥Все"
-<<<<<<< HEAD
-            case cinema = "🎬Кинотеатры"
-=======
             case cinema = "🎬Кино"
->>>>>>> 784b82f (added now playing)
             case concerts = "🎙️Концерты"
             case inTheaters = "🎭Театр"
             case sport = "⚽️Спорт"
             case other = "🧩Другое"
-<<<<<<< HEAD
-          }
-    
-    struct Colors {
-=======
->>>>>>> 784b82f (added now playing)
         
     }
     
     enum Category: String, CaseIterable {
-<<<<<<< HEAD
-        case all = "🔥All"
-        case streaming = "🎥Streaming"
-        case onTV = "📺On TV"
-        case inTheaters = "🍿In Theaters"
-=======
         case nowPlayng = "🔥Now Playing"
         case popular = "🎥Popular"
         case topRated = "📺Top Rated"
         case upcoming = "🍿 Upcoming"
->>>>>>> 784b82f (added now playing)
     }
     
     struct Info {

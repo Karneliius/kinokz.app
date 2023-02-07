@@ -14,8 +14,6 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-<<<<<<< HEAD
-=======
 			<string>The MIT License (MIT)
 
 Copyright (c) 2019 Wei Wang
@@ -48,7 +46,6 @@ SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
->>>>>>> 784b82f (added now playing)
 			<string>Copyright (c) 2011-Present SnapKit Team - https://github.com/SnapKit
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -7,8 +7,5 @@ target 'ApplicationOne' do
 
   # Pods for ApplicationOne
   pod 'SnapKit'
-<<<<<<< HEAD
-=======
   pod 'Kingfisher'
->>>>>>> 784b82f (added now playing)
 end

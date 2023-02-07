@@ -1,27 +1,13 @@
 PODS:
-<<<<<<< HEAD
-  - SnapKit (5.6.0)
-
-DEPENDENCIES:
-=======
   - Kingfisher (7.6.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - Kingfisher
->>>>>>> 784b82f (added now playing)
   - SnapKit
 
 SPEC REPOS:
   trunk:
-<<<<<<< HEAD
-    - SnapKit
-
-SPEC CHECKSUMS:
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-
-PODFILE CHECKSUM: 4644f9dc0da51e7314c917b98fc98e085a8f3296
-=======
     - Kingfisher
     - SnapKit
 
@@ -30,6 +16,5 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
 PODFILE CHECKSUM: b9078062272f902412dbfab40e340db703e24da2
->>>>>>> 784b82f (added now playing)
 
 COCOAPODS: 1.11.3

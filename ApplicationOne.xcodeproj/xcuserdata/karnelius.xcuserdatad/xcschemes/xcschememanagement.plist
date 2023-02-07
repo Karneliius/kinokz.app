@@ -7,11 +7,7 @@
 		<key>ApplicationOne.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>2</integer>
-=======
 			<integer>3</integer>
->>>>>>> 784b82f (added now playing)
 		</dict>
 	</dict>
 </dict>

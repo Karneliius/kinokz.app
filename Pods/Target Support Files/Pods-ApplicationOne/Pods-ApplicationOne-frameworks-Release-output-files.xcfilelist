@@ -1,5 +1,2 @@
-<<<<<<< HEAD
-=======
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework
->>>>>>> 784b82f (added now playing)
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework

@@ -9,8 +9,6 @@ import UIKit
 
 final class CategoryTableViewCell: UITableViewCell {
     
-<<<<<<< HEAD
-=======
     private var movieList: [MovieModel] = []
     
     private lazy var movieCollectionView: UICollectionView = {
@@ -22,37 +20,19 @@ final class CategoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
->>>>>>> 784b82f (added now playing)
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupViews()
         setupConstraints()
-<<<<<<< HEAD
-=======
         
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
->>>>>>> 784b82f (added now playing)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-<<<<<<< HEAD
-}
-//MARK: - Setup views and constraints
-private extension CategoryTableViewCell {
-    
-    func setupViews() {
-        
-    }
-    
-    func setupConstraints() {
-        
-    }
-    
-=======
     
     func configure(with movieList: [MovieModel]) {
         self.movieList = movieList
@@ -97,5 +77,4 @@ private extension CategoryTableViewCell {
             make.edges.equalToSuperview()
         }
     }
->>>>>>> 784b82f (added now playing)
 }
