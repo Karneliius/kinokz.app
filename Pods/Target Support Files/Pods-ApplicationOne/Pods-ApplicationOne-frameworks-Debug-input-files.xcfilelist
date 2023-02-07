@@ -1,2 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-ApplicationOne/Pods-ApplicationOne-frameworks.sh
+<<<<<<< HEAD
+=======
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+>>>>>>> 784b82f (added now playing)
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework

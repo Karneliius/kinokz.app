@@ -14,6 +14,7 @@ class PlacesTableViewCell: UITableViewCell {
         imageview.layer.cornerRadius = 17
         imageview.clipsToBounds = true
         return imageview
+<<<<<<< HEAD
         }()
         
         private lazy var someView: UIView = {
@@ -22,14 +23,32 @@ class PlacesTableViewCell: UITableViewCell {
         }()
         
         private lazy var nameLabel: UILabel = {
+=======
+    }()
+        
+    private lazy var someView: UIView = {
+        let view = UIView()
+        return view
+        
+    }()
+        
+    private lazy var nameLabel: UILabel = {
+>>>>>>> 784b82f (added now playing)
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .label
         label.numberOfLines = 0
         return label
+<<<<<<< HEAD
         }()
         
         private lazy var addressLabel: UILabel = {
+=======
+        
+    }()
+        
+    private lazy var addressLabel: UILabel = {
+>>>>>>> 784b82f (added now playing)
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
@@ -37,11 +56,20 @@ class PlacesTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.textColor = .systemGray
         return label
+<<<<<<< HEAD
         }()
         
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
+=======
+        
+    }()
+        
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+>>>>>>> 784b82f (added now playing)
         setupViews()
         setupConstraints()
         }

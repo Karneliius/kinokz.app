@@ -7,12 +7,23 @@
 
 import UIKit
 import SnapKit
+<<<<<<< HEAD
 
 final class MainViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+=======
+import Kingfisher
+
+final class MainViewController: UITabBarController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+>>>>>>> 784b82f (added now playing)
         let vc1 = UINavigationController(rootViewController: MovieViewController())
         let vc2 = UINavigationController(rootViewController: PlaceViewController())
         let vc3 = UINavigationController(rootViewController: TicketViewController())
@@ -28,6 +39,7 @@ final class MainViewController: UITabBarController {
         vc4.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
         
         vc1.title = "Poster"
+<<<<<<< HEAD
         vc2.title = "Place"
         vc3.title = "Tickets"
         vc4.title = "Profile"
@@ -36,5 +48,12 @@ final class MainViewController: UITabBarController {
         
         view.backgroundColor = .systemBackground
         
+=======
+        vc2.title = "Places"
+        vc3.title = "Tickets"
+        vc4.title = "Profile"
+        
+        setViewControllers([vc1,vc2,vc3,vc4], animated: true)
+>>>>>>> 784b82f (added now playing)
     }
 }
