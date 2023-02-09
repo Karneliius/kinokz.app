@@ -20,8 +20,9 @@ struct Constants {
         static let categoryTableViewCell = "CategoryTableViewCell"
         static let placesTableViewCell = "PlacesTableViewCell"
         static let placesCollectionViewCell = "PlacesCollectionViewCell"
-        static let categoryCollectionViewCell2 = "CategoryCollectionViewCell2"
+        static let categoryCollectionViewCellTwo = "CategoryCollectionViewCellTwo"
         static let movieCollectionViewCell = "MovieCollectionViewCell"
+        static let nowPlayingMoviesTableViewCell = "NowPlayingMoviesTableViewCell"
     }
     struct Values {
         static let urlList = [URLs.trending, URLs.nowPlaying, URLs.popular, URLs.topRated, URLs.upcoming]

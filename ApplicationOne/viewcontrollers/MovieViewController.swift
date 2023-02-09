@@ -124,7 +124,7 @@ extension MovieViewController: UICollectionViewDataSource {
     }
 }
 
-//MARK: - Collection view delegate methods
+//MARK: - Collection view delegate flow methods
    
 extension MovieViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -141,6 +141,18 @@ extension MovieViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: - Collection view delegate methods
+
+extension MovieViewController:UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == trendingCollectionView {
+            let vc = DetailsViewController()
+       //     vc.configure
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+}
 //MARK: - Table view data source methods
 
 extension MovieViewController: UITableViewDataSource {

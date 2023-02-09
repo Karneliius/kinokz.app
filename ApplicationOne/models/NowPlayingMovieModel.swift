@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct NowPlayingMovieModel {
+    let backdropPath: String
+    let id: Int
+    let genreIds: [Int]
+    let overview: String
+    let posterPath: String
+    let title: String
+    let releaseDate: String
+}

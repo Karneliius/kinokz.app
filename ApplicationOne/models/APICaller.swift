@@ -10,7 +10,6 @@ import Foundation
 protocol APICallerDelegate {
     func didUpdateMovieList(with movieList: [MovieModel])
     func didFailWithError(_ error: Error)
-    
 }
 
 struct APICaller {
@@ -33,7 +32,7 @@ struct APICaller {
             task.resume()
         }
     }
-    
+
     let urlString = Constants.URLs.trending
     
     func parseJSON(_ data: Data) -> [MovieModel]? {

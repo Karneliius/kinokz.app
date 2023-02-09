@@ -8,6 +8,7 @@
 import UIKit
 
 class PlacesTableViewCell: UITableViewCell {
+    
     private lazy var imageViewCell: UIImageView = {
         let imageview = UIImageView()
         imageview.contentMode = .scaleAspectFill
@@ -61,42 +62,41 @@ class PlacesTableViewCell: UITableViewCell {
             nameLabel.text = text
         }
         
-        func addressOfPlace(with adress: String) {
-            addressLabel.text = adress
+        func addressOfPlace(with address: String) {
+            addressLabel.text = address
         }
     }
 
-    //MARK: - Setup Views and Constraints methods
-    private extension PlacesTableViewCell {
-        
-        func setupViews() {
-            contentView.addSubview(imageViewCell)
-            contentView.addSubview(someView)
-            someView.addSubview(nameLabel)
-            someView.addSubview(addressLabel)
+//MARK: - Setup Views and Constraints methods
+
+private extension PlacesTableViewCell {
+    func setupViews() {
+        contentView.addSubview(imageViewCell)
+        contentView.addSubview(someView)
+        someView.addSubview(nameLabel)
+        someView.addSubview(addressLabel)
+    }
+    
+    func setupConstraints() {
+        imageViewCell.snp.makeConstraints { make in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.25)
+            make.height.equalToSuperview().inset(0.9)
         }
-        
-        func setupConstraints() {
-            imageViewCell.snp.makeConstraints { make in
-                make.leading.top.bottom.equalToSuperview()
-                make.width.equalToSuperview().multipliedBy(0.25)
-                make.height.equalToSuperview().inset(0.9)
-            }
-            someView.snp.makeConstraints { make in
-                make.top.bottom.equalToSuperview()
-                make.leading.equalTo(imageViewCell.snp.trailing).offset(10)
-                make.trailing.equalToSuperview().inset(20)
-                make.height.equalToSuperview()
-            }
-            
-            nameLabel.snp.makeConstraints { make in
-                make.top.trailing.leading.equalToSuperview()
-                make.height.equalToSuperview().multipliedBy(0.3)
-            }
-            addressLabel.snp.makeConstraints { make in
-                make.top.equalTo(nameLabel.snp.bottom)
-                make.trailing.leading.equalToSuperview()
-                make.height.equalToSuperview().multipliedBy(0.3)
-            }
+        someView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.equalTo(imageViewCell.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalToSuperview()
+        }
+        nameLabel.snp.makeConstraints { make in
+            make.top.trailing.leading.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.3)
+        }
+        addressLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom)
+            make.trailing.leading.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.3)
         }
     }
+}

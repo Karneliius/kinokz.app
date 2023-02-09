@@ -10,50 +10,94 @@ import SnapKit
 
 final class PlaceViewController: UIViewController {
     
+    var apiPlaceCaller = APIPlaceCaller()
+    var nowPlayingMovieList: [NowPlayingMovieModel] = []
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
     private let placesCategory = Constants.Places.allCases
     private let descriptionOfPlace = Constants.Info.allDataCell()
     
-    private lazy var placesSearchBar: UISearchBar = {
+    private lazy var movieSearchBar: UISearchBar = {
         let searchbar = UISearchBar()
         searchbar.searchBarStyle = .minimal
         searchbar.placeholder = "Поиск"
         return searchbar
     }()
-    
-    private lazy var placesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionview.register(PlacesCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.placesCollectionViewCell)
-        return collectionview
+    private lazy var movieTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(NowPlayingMoviesTableViewCell.self, forCellReuseIdentifier:Constants.Identifiers.nowPlayingMoviesTableViewCell)
+        tableView.isScrollEnabled = false
+        return tableView
     }()
-    
+    private lazy var categoryCollectionView: UICollectionView = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.categoryCollectionViewCell)
+            collectionView.showsHorizontalScrollIndicator = false
+            return collectionView
+        
+    }()
+   /*
     private let placesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(PlacesTableViewCell.self, forCellReuseIdentifier: Constants.Identifiers.placesTableViewCell)
         tableView.isScrollEnabled = false
         return tableView
     }()
+    */
+    
+    private lazy var someLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .label
+        label.font = UIFont.boldSystemFont(ofSize: 25)
+        return label
+    }()
+
+    /*
+     private lazy var placesCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionview.register(PlacesCollectionViewCell.self, forCellWithReuseIdentifier: Constants.Identifiers.placesCollectionViewCell)
+        return collectionview
+    }()
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        apiPlaceCaller.delegate = self
+        apiPlaceCaller.fetchRequest()
         
+        view.backgroundColor = .systemBackground
+        movieTableView.dataSource = self
+        movieTableView.delegate = self
+        /*
         placesCollectionView.dataSource = self
         placesCollectionView.delegate = self
         placesTableView.dataSource = self
         placesTableView.delegate = self
+         */
         
         setupViews()
         setupConstraints()
     }
 
 }
+//MARK: - API Caller delegate methods
 
+extension PlaceViewController: APIPlaceCallerDelegate {
+    func didUpdateMovieList(with nowPlayingMovieList: [NowPlayingMovieModel]) {
+        self.nowPlayingMovieList.append(contentsOf: nowPlayingMovieList)
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print("Filed: ", error)
+    }
+}
 //MARK: - CollectionView dataSource methods
 
 extension PlaceViewController: UICollectionViewDataSource {
@@ -86,14 +130,18 @@ extension PlaceViewController: UICollectionViewDelegateFlowLayout {
 
 extension PlaceViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        descriptionOfPlace.count
+        nowPlayingMovieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.placesTableViewCell, for: indexPath) as? PlacesTableViewCell else { return UITableViewCell() }
-        cell.imageOfPlace(with: descriptionOfPlace[indexPath.item].imageName)
-        cell.nameOfPlace(with: descriptionOfPlace[indexPath.item].name)
-        cell.addressOfPlace(with: descriptionOfPlace[indexPath.item].address)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.nowPlayingMoviesTableViewCell, for: indexPath) as? NowPlayingMoviesTableViewCell else { return UITableViewCell() }
+        cell.imageMovie(with: nowPlayingMovieList[indexPath.item + 1].posterPath)
+        cell.titleMovie(with: nowPlayingMovieList[indexPath.item + 1].title)
+        cell.dateOfIssue(with: nowPlayingMovieList[indexPath.item + 1].releaseDate)
+        cell.movieDesctiption(with: nowPlayingMovieList[indexPath.item + 1].overview)
+    //    cell.imageOfPlace(with: descriptionOfPlace[indexPath.item].imageName)
+    //    cell.nameOfPlace(with: descriptionOfPlace[indexPath.item].name)
+    //    cell.addressOfPlace(with: descriptionOfPlace[indexPath.item].address)
         return cell
     }
 }
@@ -113,12 +161,16 @@ private extension PlaceViewController {
     func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(placesSearchBar)
-        contentView.addSubview(placesCollectionView)
-        contentView.addSubview(placesTableView)
+        contentView.addSubview(movieSearchBar)
+        contentView.addSubview(categoryCollectionView)
+        contentView.addSubview(movieTableView)
+        contentView.addSubview(someLabel)
+        //contentView.addSubview(placesCollectionView)
+        //contentView.addSubview(placesTableView)
     }
     
     func setupConstraints() {
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -127,22 +179,40 @@ private extension PlaceViewController {
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalTo(view).inset(15)
         }
-        
-        placesSearchBar.snp.makeConstraints { make in
+        movieSearchBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(view).multipliedBy(0.05)
         }
-        
-        placesCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(placesSearchBar.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(view).multipliedBy(0.05)
+        movieSearchBar.searchTextField.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        
-        placesTableView.snp.makeConstraints { make in
-            make.top.equalTo(placesCollectionView.snp.bottom).offset(10)
+        categoryCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(movieSearchBar.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(view).multipliedBy(0.06)
+        }
+        movieTableView.snp.makeConstraints { make in
+            make.top.equalTo(categoryCollectionView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().offset(10)
+            make.height.equalTo(view).multipliedBy(0.2)
+        }
+        someLabel.snp.makeConstraints { make in
+            make.top.equalTo(movieTableView.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(view).multipliedBy(2)
+            make.height.equalToSuperview().multipliedBy(0.5)
+            
+            /* placesCollectionView.snp.makeConstraints { make in
+             make.top.equalTo(movieSearchBar.snp.bottom).offset(10)
+             make.leading.trailing.equalToSuperview()
+             make.height.equalTo(view).multipliedBy(0.05)
+             }
+             
+             placesTableView.snp.makeConstraints { make in
+             make.top.equalTo(placesCollectionView.snp.bottom).offset(10)
+             make.leading.trailing.bottom.equalToSuperview()
+             make.height.equalTo(view).multipliedBy(2)
+             }
+             */
         }
     }
 }

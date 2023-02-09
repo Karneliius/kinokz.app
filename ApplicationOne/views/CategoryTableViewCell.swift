@@ -42,7 +42,7 @@ final class CategoryTableViewCell: UITableViewCell {
     }
 }
 
-//MARK: - Collection view data source and delegate methods
+//MARK: - Collection view data source and delegate flow layout methods
 
 extension CategoryTableViewCell: UICollectionViewDataSource {
     

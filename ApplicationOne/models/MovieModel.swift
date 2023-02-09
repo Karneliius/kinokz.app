@@ -13,5 +13,4 @@ struct MovieModel {
     let title: String
     let posterPath: String
     let genreIds: [Int]
-    
 }
